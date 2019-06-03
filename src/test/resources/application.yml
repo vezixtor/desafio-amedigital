@@ -1,0 +1,42 @@
+#
+
+# ----------------------------------------
+# HSQL PROPERTIES #
+# ----------------------------------------
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+    properties:
+      hibernate:
+        #Essa propriedade é para resolver o problema do lazy load nos testes
+        enable_lazy_load_no_trans: true
+  jackson:
+    #time-zone: GMT-3
+    serialization:
+      fail-on-empty-beans: false
+      write-null-map-values: false
+      WRITE_DATES_AS_TIMESTAMPS: false
+    #time-zone: GMT-2
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.springframework: INFO
+
+# ----------------------------------------
+# NETFLIX #
+# ----------------------------------------
+
+feign:
+  hystrix:
+    enabled: false
